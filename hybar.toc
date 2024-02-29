@@ -1,0 +1,13 @@
+## Interface: 11501 
+## Title: hybar v1.0.0-alpha
+## Notes: A dedicated action bar for hyb communication.
+## Author: hyb-devs
+## Version: 1.0.0-alpha
+## DefaultState: enabled
+## SavedVariablesPerCharacter: character_core_settings, character_bar_settings
+
+localization.lua
+hybar_utils.lua
+hybar_bar.lua
+hybar_config.lua
+hybar_core.lua
