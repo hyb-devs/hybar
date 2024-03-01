@@ -16,42 +16,38 @@ addon_data.bar.default_settings = {
 }
 
 addon_data.bar.LoadSettings = function()
-    -- If the carried over settings dont exist then make them
-    if not character_bar_settings then
-        character_bar_settings = {}
+    if not hybar_bar_settings then
+        hybar_bar_settings = {}
     end
-    -- If the carried over settings aren't set then set them to the defaults
+
     for setting, value in pairs(addon_data.bar.default_settings) do
-        -- print(character_bar_settings[setting])
-        if character_bar_settings[setting] == nil then
-            character_bar_settings[setting] = value
+        if hybar_bar_settings[setting] == nil then
+            hybar_bar_settings[setting] = value
         end
     end
 end
 
 addon_data.bar.RestoreDefaults = function()
     for setting, value in pairs(addon_data.bar.default_settings) do
-        character_bar_settings[setting] = value
+        hybar_bar_settings[setting] = value
     end
     addon_data.bar.UpdateVisualsOnSettingsChange()
     addon_data.bar.UpdateConfigPanelValues()
 end
 
---[[============================================================================================]]--
---[[====================================== LOGIC RELATED =======================================]]--
---[[============================================================================================]]--
+--[[====================================== LOGIC =======================================]]--
+
 addon_data.bar.OnUpdate = function(elapsed)
-    if character_core_settings.is_enabled then
+    if hybar_core_settings.is_enabled then
         -- Update the visuals
         addon_data.bar.UpdateVisualsOnUpdate()
     end
 end
 
---[[============================================================================================]]--
---[[===================================== UI RELATED ===========================================]]--
---[[============================================================================================]]--
+--[[===================================== UI ===========================================]]--
+
 addon_data.bar.UpdateVisualsOnUpdate = function()
-    local settings = character_bar_settings
+    local settings = hybar_bar_settings
     local frame = addon_data.bar.frame
     if settings.enabled then
         
@@ -60,8 +56,8 @@ end
 
 addon_data.bar.UpdateVisualsOnSettingsChange = function()
     local frame = addon_data.bar.frame
-    local settings = character_bar_settings
-    local core_settings = character_core_settings
+    local settings = hybar_bar_settings
+    local core_settings = hybar_core_settings
     if core_settings.is_enabled then
         frame:Show()
         frame:ClearAllPoints()
@@ -72,14 +68,14 @@ addon_data.bar.UpdateVisualsOnSettingsChange = function()
 end
 
 addon_data.bar.OnFrameDragStart = function()
-    if not character_bar_settings.is_locked then
+    if not hybar_bar_settings.is_locked then
         addon_data.bar.frame:StartMoving()
     end
 end
 
 addon_data.bar.OnFrameDragStop = function()
     local frame = addon_data.bar.frame
-    local settings = character_bar_settings
+    local settings = hybar_bar_settings
     frame:StopMovingOrSizing()
     point, _, rel_point, x_offset, y_offset = frame:GetPoint()
     if x_offset < 20 and x_offset > -20 then
@@ -95,7 +91,7 @@ end
 
 -- addon_data.bar.HandleButtons = function()
 --     local frame = addon_data.bar.frame
---     local settings = character_bar_settings
+--     local settings = hybar_bar_settings
 
 --     frame.buttons = {}
 
@@ -137,7 +133,7 @@ end
 -- end
 
 addon_data.bar.InitializeVisuals = function()
-    local settings = character_bar_settings
+    local settings = hybar_bar_settings
 
     local BUTTON_SIZE = 32
     local PADDING = 2
@@ -207,13 +203,11 @@ addon_data.bar.InitializeVisuals = function()
     frame:Show()
 end
 
---[[============================================================================================]]--
---[[================================== CONFIG WINDOW RELATED ===================================]]--
---[[============================================================================================]]--
+--[[================================== CONFIG WINDOW ===================================]]--
 
 -- addon_data.bar.UpdateConfigPanelValues = function()
 --     local panel = addon_data.bar.config_frame
---     local settings = character_bar_settings
+--     local settings = hybar_bar_settings
 --     panel.height_editbox:SetText(tostring(settings.height))
 --     panel.height_editbox:SetCursorPosition(0)
 --     panel.x_offset_editbox:SetText(tostring(settings.x_offset))
@@ -223,24 +217,24 @@ end
 -- end
 
 -- addon_data.bar.HeightEditBoxOnEnter = function(self)
---     character_bar_settings.height = tonumber(self:GetText())
+--     hybar_bar_settings.height = tonumber(self:GetText())
 --     addon_data.bar.UpdateVisualsOnSettingsChange()
 -- end
 
 -- addon_data.bar.XOffsetEditBoxOnEnter = function(self)
---     character_bar_settings.x_offset = tonumber(self:GetText())
+--     hybar_bar_settings.x_offset = tonumber(self:GetText())
 --     addon_data.bar.UpdateVisualsOnSettingsChange()
 -- end
 
 -- addon_data.bar.YOffsetEditBoxOnEnter = function(self)
---     character_bar_settings.y_offset = tonumber(self:GetText())
+--     hybar_bar_settings.y_offset = tonumber(self:GetText())
 --     addon_data.bar.UpdateVisualsOnSettingsChange()
 -- end
 
 -- addon_data.bar.CreateConfigPanel = function(parent_panel)
 --     addon_data.bar.config_frame = CreateFrame("Frame", addon_name .. "BarConfigPanel", parent_panel)
 --     local panel = addon_data.bar.config_frame
---     local settings = character_bar_settings
+--     local settings = hybar_bar_settings
     
 --     -- Height EditBox
 --     panel.height_editbox = addon_data.config.EditBoxFactory(

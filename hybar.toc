@@ -4,7 +4,7 @@
 ## Author: hyb-devs
 ## Version: 1.0.0-alpha
 ## DefaultState: enabled
-## SavedVariablesPerCharacter: character_core_settings, character_bar_settings
+## SavedVariablesPerhybar: hybar_core_settings, hybar_bar_settings
 
 localization.lua
 hybar_utils.lua

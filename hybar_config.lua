@@ -137,8 +137,8 @@ end
 
 addon_data.config.UpdateConfigValues = function()
     local panel = addon_data.config.config_frame
-    local settings = character_bar_settings
-    local settings_core = character_core_settings
+    local settings = hybar_bar_settings
+    local settings_core = hybar_core_settings
 
     panel.is_enabled_checkbox:SetChecked(settings_core.is_enabled)
     panel.is_locked_checkbox:SetChecked(settings.is_locked)
@@ -146,21 +146,18 @@ addon_data.config.UpdateConfigValues = function()
 end
 
 addon_data.config.IsEnabledCheckBoxOnClick = function(self)
-    character_core_settings.is_enabled = self:GetChecked()
-    -- print("character_bar_settings.is_enabled " .. tostring(character_core_settings.is_enabled))
+    hybar_core_settings.is_enabled = self:GetChecked()
     addon_data.core.UpdateAllVisualsOnSettingsChange()
 end
 
 addon_data.config.IsLockedCheckBoxOnClick = function(self)
-    character_bar_settings.is_locked = self:GetChecked()
-    --print("character_bar_settings.is_locked " .. tostring(character_bar_settings.is_locked))
-    addon_data.bar.frame:EnableMouse(not character_bar_settings.is_locked)
+    hybar_bar_settings.is_locked = self:GetChecked()
+    addon_data.bar.frame:EnableMouse(not hybar_bar_settings.is_locked)
     addon_data.core.UpdateAllVisualsOnSettingsChange()
 end
 
 addon_data.config.WelcomeCheckBoxOnClick = function(self)
-	character_core_settings.welcome_message = self:GetChecked()
-    --print('welcome click ' .. tostring(self:GetChecked()))
+	hybar_core_settings.welcome_message = self:GetChecked()
     addon_data.core.UpdateAllVisualsOnSettingsChange()
 end
 

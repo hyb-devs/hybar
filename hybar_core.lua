@@ -39,22 +39,20 @@ addon_data.core.UpdateAllVisualsOnSettingsChange = function()
 end
 
 addon_data.core.LoadSettings = function()
-    --print(character_core_settings)
-    -- If the carried over settings dont exist then make them
-    if not character_core_settings then
-        character_core_settings = {}
+    if not hybar_core_settings then
+        hybar_core_settings = {}
     end
-    -- If the carried over settings aren't set then set them to the defaults
+
     for setting, value in pairs(addon_data.core.default_settings) do
-        if character_core_settings[setting] == nil then
-            character_core_settings[setting] = value
+        if hybar_core_settings[setting] == nil then
+            hybar_core_settings[setting] = value
         end
     end
 end
 
 addon_data.core.RestoreDefaults = function()
     for setting, value in pairs(addon_data.core.default_settings) do
-        character_core_settings[setting] = value
+        hybar_core_settings[setting] = value
     end
 end
 
@@ -63,14 +61,12 @@ local function CoreFrame_OnUpdate(self, elapsed)
 end
 
 local function OnAddonLoaded(self)
-    -- Attach the rest of the events and scripts to the core frame
     addon_data.core.core_frame:SetScript("OnUpdate", CoreFrame_OnUpdate)
 
-    -- Load the settings for the core and all timers
     LoadAllSettings()
     InitializeAllVisuals()
-    --print("onaddonloaded " .. tostring(character_core_settings.welcome_message))
-    if character_core_settings.welcome_message then
+
+    if hybar_core_settings.welcome_message then
         for _, line in ipairs(load_message) do
 		    addon_data.utils.PrintMsg(line)
         end
@@ -86,7 +82,7 @@ local function CoreFrame_OnEvent(self, event, ...)
     end
 end
 
--- Add a slash command to bring up the config window
+-- slash cmds
 SLASH_HYB_CONFIG1 = "/hellyeahbar"
 SLASH_HYB_CONFIG2 = "/hybar"
 SLASH_HYB_CONFIG3 = "/hyb"
@@ -95,5 +91,5 @@ SlashCmdList["HYB_CONFIG"] = function(option)
     InterfaceOptionsFrame_OpenToCategory("hybar")
 end
 
--- Setup the core of the addon (This is like calling main in C)
+-- setup core
 addon_data.core.core_frame:SetScript("OnEvent", CoreFrame_OnEvent)
