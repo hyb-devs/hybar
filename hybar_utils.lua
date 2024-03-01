@@ -4,7 +4,7 @@ addon_data.utils = {}
 
 -- Sends the given message to the chat frame with the addon name in front.
 addon_data.utils.PrintMsg = function(msg)
-	chat_msg = "|cFF00FFB0" .. addon_name .. ": |r" .. msg
+	local chat_msg = "|cFF00FFB0" .. addon_name .. ": |r" .. msg
 	DEFAULT_CHAT_FRAME:AddMessage(chat_msg)
 end
 
