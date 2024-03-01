@@ -1,7 +1,7 @@
-local addon_name, addon_data = ...
+local _hybName, _hyb = ...
 
-addon_data.localization_table = {}
-local L = addon_data.localization_table
+_hyb.localization_table = {}
+local L = _hyb.localization_table
 
     L["hybar"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃卂尺"
     L["hyb1"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃尺ㄖㄒ卄乇尺"

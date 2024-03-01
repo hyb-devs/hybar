@@ -1,11 +1,11 @@
-local addon_name, addon_data = ...
-local L = addon_data.localization_table
+local _hybName, _hyb = ...
+local L = _hyb.localization_table
 
-addon_data.bar = {}
+_hyb.bar = {}
 
---[[===================================== SETTINGS RELATED =====================================]]--
+--[[===================================== SETTINGS =====================================]]--
 
-addon_data.bar.default_settings = {
+_hyb.bar.default_settings = {
     point = "CENTER",
 	rel_point = "CENTER",
 	x_offset = 0,
@@ -13,47 +13,47 @@ addon_data.bar.default_settings = {
 	is_locked = false,
 }
 
-addon_data.bar.LoadSettings = function()
+_hyb.bar.LoadSettings = function()
     if not hybar_bar_settings then
         hybar_bar_settings = {}
     end
 
-    for setting, value in pairs(addon_data.bar.default_settings) do
+    for setting, value in pairs(_hyb.bar.default_settings) do
         if hybar_bar_settings[setting] == nil then
             hybar_bar_settings[setting] = value
         end
     end
 end
 
-addon_data.bar.RestoreDefaults = function()
-    for setting, value in pairs(addon_data.bar.default_settings) do
+_hyb.bar.RestoreDefaults = function()
+    for setting, value in pairs(_hyb.bar.default_settings) do
         hybar_bar_settings[setting] = value
     end
-    addon_data.bar.UpdateVisualsOnSettingsChange()
-    addon_data.bar.UpdateConfigPanelValues()
+    _hyb.bar.UpdateVisualsOnSettingsChange()
+    _hyb.bar.UpdateConfigPanelValues()
 end
 
 --[[====================================== LOGIC =======================================]]--
 
-addon_data.bar.OnUpdate = function(elapsed)
+_hyb.bar.OnUpdate = function(elapsed)
     if hybar_core_settings.is_enabled then
         -- Update the visuals
-        addon_data.bar.UpdateVisualsOnUpdate()
+        _hyb.bar.UpdateVisualsOnUpdate()
     end
 end
 
 --[[===================================== UI ===========================================]]--
 
-addon_data.bar.UpdateVisualsOnUpdate = function()
+_hyb.bar.UpdateVisualsOnUpdate = function()
     local settings = hybar_bar_settings
-    local frame = addon_data.bar.frame
+    local frame = _hyb.bar.frame
     if settings.enabled then
         
     end
 end
 
-addon_data.bar.UpdateVisualsOnSettingsChange = function()
-    local frame = addon_data.bar.frame
+_hyb.bar.UpdateVisualsOnSettingsChange = function()
+    local frame = _hyb.bar.frame
     local settings = hybar_bar_settings
     local core_settings = hybar_core_settings
     if core_settings.is_enabled then
@@ -65,14 +65,14 @@ addon_data.bar.UpdateVisualsOnSettingsChange = function()
     end
 end
 
-addon_data.bar.OnFrameDragStart = function()
+_hyb.bar.OnFrameDragStart = function()
     if not hybar_bar_settings.is_locked then
-        addon_data.bar.frame:StartMoving()
+        _hyb.bar.frame:StartMoving()
     end
 end
 
-addon_data.bar.OnFrameDragStop = function()
-    local frame = addon_data.bar.frame
+_hyb.bar.OnFrameDragStop = function()
+    local frame = _hyb.bar.frame
     local settings = hybar_bar_settings
     frame:StopMovingOrSizing()
     point, _, rel_point, x_offset, y_offset = frame:GetPoint()
@@ -81,14 +81,14 @@ addon_data.bar.OnFrameDragStop = function()
     end
     settings.point = point
     settings.rel_point = rel_point
-    settings.x_offset = addon_data.utils.SimpleRound(x_offset, 1)
-    settings.y_offset = addon_data.utils.SimpleRound(y_offset, 1)
-    addon_data.bar.UpdateVisualsOnSettingsChange()
-    -- addon_data.bar.UpdateConfigPanelValues()
+    settings.x_offset = _hyb.utils.SimpleRound(x_offset, 1)
+    settings.y_offset = _hyb.utils.SimpleRound(y_offset, 1)
+    _hyb.bar.UpdateVisualsOnSettingsChange()
+    -- _hyb.bar.UpdateConfigPanelValues()
 end
 
--- addon_data.bar.HandleButtons = function()
---     local frame = addon_data.bar.frame
+-- _hyb.bar.HandleButtons = function()
+--     local frame = _hyb.bar.frame
 --     local settings = hybar_bar_settings
 
 --     frame.buttons = {}
@@ -130,7 +130,7 @@ end
 --     frame:SetSize(settings.totalWidth, settings.totalHeight)
 -- end
 
-addon_data.bar.InitializeVisuals = function()
+_hyb.bar.InitializeVisuals = function()
     local settings = hybar_bar_settings
 
     local BUTTON_SIZE = 32
@@ -138,8 +138,8 @@ addon_data.bar.InitializeVisuals = function()
     local NUM_BUTTONS = 2
     local BUTTON_SPACING = 2.2
 
-    addon_data.bar.frame = CreateFrame("Frame", addon_name .. "barFrame", UIParent, "SecureHandlerStateTemplate")
-    local frame = addon_data.bar.frame
+    _hyb.bar.frame = CreateFrame("Frame", _hybName .. "barFrame", UIParent, "SecureHandlerStateTemplate")
+    local frame = _hyb.bar.frame
 
     frame.background = frame:CreateTexture("BACKGROUND")
     frame.background:SetAllPoints(true)
@@ -190,21 +190,21 @@ addon_data.bar.InitializeVisuals = function()
     frame:SetMovable(true)
     frame:EnableMouse(not settings.is_locked)
     frame:RegisterForDrag("LeftButton")
-    frame:SetScript("OnDragStart", addon_data.bar.OnFrameDragStart)
-    frame:SetScript("OnDragStop", addon_data.bar.OnFrameDragStop)
+    frame:SetScript("OnDragStart", _hyb.bar.OnFrameDragStart)
+    frame:SetScript("OnDragStop", _hyb.bar.OnFrameDragStop)
     frame:SetClampedToScreen(true)
 
     -- Show it off
-    addon_data.bar.UpdateVisualsOnSettingsChange()
-    addon_data.bar.UpdateVisualsOnUpdate()
+    _hyb.bar.UpdateVisualsOnSettingsChange()
+    _hyb.bar.UpdateVisualsOnUpdate()
     
     frame:Show()
 end
 
 --[[================================== CONFIG WINDOW ===================================]]--
 
--- addon_data.bar.UpdateConfigPanelValues = function()
---     local panel = addon_data.bar.config_frame
+-- _hyb.bar.UpdateConfigPanelValues = function()
+--     local panel = _hyb.bar.config_frame
 --     local settings = hybar_bar_settings
 --     panel.height_editbox:SetText(tostring(settings.height))
 --     panel.height_editbox:SetCursorPosition(0)
@@ -214,55 +214,55 @@ end
 --     panel.y_offset_editbox:SetCursorPosition(0)
 -- end
 
--- addon_data.bar.HeightEditBoxOnEnter = function(self)
+-- _hyb.bar.HeightEditBoxOnEnter = function(self)
 --     hybar_bar_settings.height = tonumber(self:GetText())
---     addon_data.bar.UpdateVisualsOnSettingsChange()
+--     _hyb.bar.UpdateVisualsOnSettingsChange()
 -- end
 
--- addon_data.bar.XOffsetEditBoxOnEnter = function(self)
+-- _hyb.bar.XOffsetEditBoxOnEnter = function(self)
 --     hybar_bar_settings.x_offset = tonumber(self:GetText())
---     addon_data.bar.UpdateVisualsOnSettingsChange()
+--     _hyb.bar.UpdateVisualsOnSettingsChange()
 -- end
 
--- addon_data.bar.YOffsetEditBoxOnEnter = function(self)
+-- _hyb.bar.YOffsetEditBoxOnEnter = function(self)
 --     hybar_bar_settings.y_offset = tonumber(self:GetText())
---     addon_data.bar.UpdateVisualsOnSettingsChange()
+--     _hyb.bar.UpdateVisualsOnSettingsChange()
 -- end
 
--- addon_data.bar.CreateConfigPanel = function(parent_panel)
---     addon_data.bar.config_frame = CreateFrame("Frame", addon_name .. "BarConfigPanel", parent_panel)
---     local panel = addon_data.bar.config_frame
+-- _hyb.bar.CreateConfigPanel = function(parent_panel)
+--     _hyb.bar.config_frame = CreateFrame("Frame", _hybName .. "BarConfigPanel", parent_panel)
+--     local panel = _hyb.bar.config_frame
 --     local settings = hybar_bar_settings
     
 --     -- Height EditBox
---     panel.height_editbox = addon_data.config.EditBoxFactory(
+--     panel.height_editbox = _hyb.config.EditBoxFactory(
 --         "barHeightEditBox",
 --         panel,
 --         L["Bar Height"],
 --         75,
 --         25,
---         addon_data.bar.HeightEditBoxOnEnter)
+--         _hyb.bar.HeightEditBoxOnEnter)
 --     panel.height_editbox:SetPoint("TOPLEFT", 320, -60, "BOTTOMRIGHT", 355, -85)
 --     -- X Offset EditBox
---     panel.x_offset_editbox = addon_data.config.EditBoxFactory(
+--     panel.x_offset_editbox = _hyb.config.EditBoxFactory(
 --         "barXOffsetEditBox",
 --         panel,
 --         L["X Offset"],
 --         75,
 --         25,
---         addon_data.bar.XOffsetEditBoxOnEnter)
+--         _hyb.bar.XOffsetEditBoxOnEnter)
 --     panel.x_offset_editbox:SetPoint("TOPLEFT", 200, -110, "BOTTOMRIGHT", 275, -135)
 --     -- Y Offset EditBox
---     panel.y_offset_editbox = addon_data.config.EditBoxFactory(
+--     panel.y_offset_editbox = _hyb.config.EditBoxFactory(
 --         "barYOffsetEditBox",
 --         panel,
 --         L["Y Offset"],
 --         75,
 --         25,
---         addon_data.bar.YOffsetEditBoxOnEnter)
+--         _hyb.bar.YOffsetEditBoxOnEnter)
 --     panel.y_offset_editbox:SetPoint("TOPLEFT", 280, -110, "BOTTOMRIGHT", 355, -135)
 
 --     -- Return the final panel
---     addon_data.bar.UpdateConfigPanelValues()
+--     _hyb.bar.UpdateConfigPanelValues()
 --     return panel
 -- end

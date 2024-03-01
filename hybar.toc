@@ -3,16 +3,24 @@
 ## Notes: A dedicated action bar for hyb communication.
 ## Author: hyb-devs
 ## DefaultState: enabled
-## SavedVariables: hybar_core_settings
-## SavedVariablesPerCharacter: hybar_bar_settings
+## SavedVariables: _hybar_core
+## SavedVariablesPerCharacter: _hybar_char
 ## Version: 1.0.0-alpha
 
 ## X-Email: hyb.devs@gmail.com
 ## X-Curse-Project-ID: 980904
 ## X-Category: Chat & Communication, Action Bars
 
-localization.lua
-hybar_utils.lua
-hybar_core.lua
-hybar_bar.lua
-hybar_config.lua
+locales/hybar-enUS.lua
+
+definitions.lua
+
+core/hybar_utils.lua
+
+functions/slash.lua
+
+core/hybar_core.lua
+core/hybar_bar.lua
+config/hybar_config.lua
+
+start.lua
