@@ -1,14 +1,14 @@
 local hybName, _hyb = ...
-local L, Util = _hyb.localization_table, _hyb.utils
+local L, _util = _hyb.locales, _hyb.util
 
 for key, val in pairs(_hyb) do
-    if key ~= "localization_table" then
+    if key ~= "locales" then
         if type(val) == "string" then
-            Util.PrintMsg(key .. " : " .. tostring(val))
+            _util.PrintMsg(key .. " : " .. tostring(val))
         else
-            Util.PrintMsg("\n".. key .. "\n")
+            _util.PrintMsg("\n".. key .. "\n")
             for k, v in pairs(val) do
-                Util.PrintMsg(k .. " : " .. tostring(v))
+                _util.PrintMsg(k .. " : " .. tostring(v))
             end
         end
     end
@@ -44,7 +44,7 @@ end
 
 local function InitializeAllVisuals()
     _hyb.bar.InitializeVisuals()
-    _hyb.config.InitializeVisuals()
+    _hyb.config:InitializeVisuals()
 end
 
 _hyb.core.UpdateAllVisualsOnSettingsChange = function()
@@ -81,7 +81,7 @@ local function OnAddonLoaded(self)
 
     if hybar_core_settings.welcome_message then
         for _, line in ipairs(load_message) do
-		    _hyb.utils.PrintMsg(line)
+		    _hyb.util.PrintMsg(line)
         end
 	end
 end

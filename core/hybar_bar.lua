@@ -1,5 +1,5 @@
 local _hybName, _hyb = ...
-local L = _hyb.localization_table
+local L = _hyb.locales
 
 _hyb.bar = {}
 
@@ -81,8 +81,8 @@ _hyb.bar.OnFrameDragStop = function()
     end
     settings.point = point
     settings.rel_point = rel_point
-    settings.x_offset = _hyb.utils.SimpleRound(x_offset, 1)
-    settings.y_offset = _hyb.utils.SimpleRound(y_offset, 1)
+    settings.x_offset = _hyb.util.SimpleRound(x_offset, 1)
+    settings.y_offset = _hyb.util.SimpleRound(y_offset, 1)
     _hyb.bar.UpdateVisualsOnSettingsChange()
     -- _hyb.bar.UpdateConfigPanelValues()
 end

@@ -1,7 +1,8 @@
 local _hybName, _hyb = ...
 
-_hyb.localization_table = {}
-local L = _hyb.localization_table
+_hyb.locales = {}
+
+local L = _hyb.locales
 
     L["hybar"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃卂尺"
     L["hyb1"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃尺ㄖㄒ卄乇尺"
