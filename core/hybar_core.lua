@@ -1,18 +1,22 @@
 local hybName, _hyb = ...
-local L, _util = _hyb.locales, _hyb.util
+local L = _hyb.locales
 
-for key, val in pairs(_hyb) do
-    if key ~= "locales" then
-        if type(val) == "string" then
-            _util.PrintMsg(key .. " : " .. tostring(val))
-        else
-            _util.PrintMsg("\n".. key .. "\n")
-            for k, v in pairs(val) do
-                _util.PrintMsg(k .. " : " .. tostring(v))
-            end
-        end
-    end
+if not _hyb.util then
+    _hyb.util = _hyb.SetupUtil()
 end
+
+-- for key, val in pairs(_hyb) do
+--     if key ~= "locales" then
+--         if type(val) == "string" then
+--             _hyb.util.PrintMsg(key .. " : " .. tostring(val))
+--         else
+--             _hyb.util.PrintMsg("\n".. key .. "\n")
+--             for k, v in pairs(val) do
+--                 _hyb.util.PrintMsg(k .. " : " .. tostring(v))
+--             end
+--         end
+--     end
+-- end
 
 _hyb.core = {}
 
