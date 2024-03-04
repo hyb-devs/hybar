@@ -5,19 +5,6 @@ if not _hyb.util then
     _hyb.util = _hyb.SetupUtil()
 end
 
--- for key, val in pairs(_hyb) do
---     if key ~= "locales" then
---         if type(val) == "string" then
---             _hyb.util.PrintMsg(key .. " : " .. tostring(val))
---         else
---             _hyb.util.PrintMsg("\n".. key .. "\n")
---             for k, v in pairs(val) do
---                 _hyb.util.PrintMsg(k .. " : " .. tostring(v))
---             end
---         end
---     end
--- end
-
 _hyb.core = {}
 
 _hyb.core.core_frame = CreateFrame("Frame", hybName .. "CoreFrame", UIParent)
@@ -39,11 +26,6 @@ _hyb.core.default_settings = {
 local function LoadAllSettings()
     _hyb.core.LoadSettings()
     _hyb.bar.LoadSettings()
-end
-
-_hyb.core.RestoreAllDefaults = function()
-    _hyb.core.RestoreDefaults()
-    _hyb.bar.RestoreDefaults()
 end
 
 local function InitializeAllVisuals()
