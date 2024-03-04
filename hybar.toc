@@ -16,7 +16,6 @@ locales/hybar-enUS.lua
 definitions.lua
 
 util/util.lua
-util/config_util.lua
 
 functions/slash.lua
 
