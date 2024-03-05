@@ -1,1 +1,5 @@
-package-as: hybar
+package-as: hybar 
+
+ignore:
+  - Readme.md
+
