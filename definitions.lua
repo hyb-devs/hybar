@@ -1,3 +1,4 @@
+--[[
 ---@class panel : frame
 ---@field config_panel frame
 
@@ -6,4 +7,5 @@
 ---@field OnDefault fun(self: config)
 ---@field InitializeVisuals fun(self: config)
 ---@field parent_panel frame
+]]--
 
