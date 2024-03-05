@@ -2,11 +2,6 @@ local _hybName, _hyb = ...
 local L, config, core = _hyb.locales, _hyb.config or {}, _hyb.core
 
 
-function config:OnDefault()
-    core.RestoreAllDefaults()
-    self.UpdateConfigValues()
-end
-
 function config:InitializeVisuals()
     ---@type panel
     local panel = CreateFrame("Frame", _hybName .. "ConfigParentPanel", UIParent)
