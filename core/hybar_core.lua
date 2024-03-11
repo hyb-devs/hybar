@@ -38,20 +38,20 @@ _hyb.core.UpdateAllVisualsOnSettingsChange = function()
 end
 
 _hyb.core.LoadSettings = function()
-    if not hybar_core_settings then
-        hybar_core_settings = {}
+    if not _hybar_core then
+        _hybar_core = {}
     end
 
     for setting, value in pairs(_hyb.core.default_settings) do
-        if hybar_core_settings[setting] == nil then
-            hybar_core_settings[setting] = value
+        if _hybar_core[setting] == nil then
+            _hybar_core[setting] = value
         end
     end
 end
 
 _hyb.core.RestoreDefaults = function()
     for setting, value in pairs(_hyb.core.default_settings) do
-        hybar_core_settings[setting] = value
+        _hybar_core[setting] = value
     end
 end
 
@@ -65,7 +65,7 @@ local function OnAddonLoaded(self)
     LoadAllSettings()
     InitializeAllVisuals()
 
-    if hybar_core_settings.welcome_message then
+    if _hybar_core.welcome_message then
         for _, line in ipairs(load_message) do
 		    _hyb.util.PrintMsg(line)
         end

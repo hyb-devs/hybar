@@ -21,8 +21,8 @@ end
 
 config.UpdateConfigValues = function()
     local panel = _hyb.config.config_frame
-    local settings = hybar_bar_settings
-    local settings_core = hybar_core_settings
+    local settings = _hybar_char
+    local settings_core = _hybar_core
 
     panel.is_enabled_checkbox:SetChecked(settings_core.is_enabled)
     panel.is_locked_checkbox:SetChecked(settings.is_locked)
@@ -30,18 +30,18 @@ config.UpdateConfigValues = function()
 end
 
 config.IsEnabledCheckBoxOnClick = function(self)
-    hybar_core_settings.is_enabled = self:GetChecked()
+    _hybar_core.is_enabled = self:GetChecked()
     _hyb.core.UpdateAllVisualsOnSettingsChange()
 end
 
 config.IsLockedCheckBoxOnClick = function(self)
-    hybar_bar_settings.is_locked = self:GetChecked()
-    _hyb.bar.frame:EnableMouse(not hybar_bar_settings.is_locked)
+    _hybar_char.is_locked = self:GetChecked()
+    _hyb.bar.frame:EnableMouse(not _hybar_char.is_locked)
     _hyb.core.UpdateAllVisualsOnSettingsChange()
 end
 
 config.WelcomeCheckBoxOnClick = function(self)
-	hybar_core_settings.welcome_message = self:GetChecked()
+	_hybar_core.welcome_message = self:GetChecked()
     _hyb.core.UpdateAllVisualsOnSettingsChange()
 end
 
