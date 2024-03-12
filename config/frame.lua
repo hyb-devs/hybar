@@ -2,10 +2,10 @@ local _, _hyb = ...
 local L, config, util  = _hyb.locales, _hyb.config, _hyb.util
 
 local padding = 16
-local f = CreateFrame("Frame", L["ns"] .. "_CONFIG_FRAME", UIParent)
-
 
 -- HYBAR_CONFIG_FRAME
+local f = util.Frame("Frame", "CONFIG_FRAME", UIParent)
+
 f:SetPoint("CENTER")
 f:SetSize(500,500)
 f:SetMovable(true)
@@ -17,22 +17,37 @@ f:SetClampedToScreen(true)
 
 -- background
 local fbg = f:CreateTexture(nil, "BACKGROUND")
+
 fbg:SetAllPoints()
 fbg:SetColorTexture(0, 0, 0, 0.5)
 
 
 -- HYBAR_CONFIG_PANEL
 local panel = CreateFrame("Frame", L["ns"] .. "_CONFIG_PANEL", f)
+
 panel:SetPoint("TOPLEFT", f, "TOPLEFT", padding, -padding)
 panel:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -padding, padding)
 
 
 -- title text
 local titleText = util.Text(panel, L["hybar"], "SystemFont_Huge1")
+
 titleText:SetPoint("TOP", panel)
 
 
+-- options frame
+local optionsFrame = util.Frame("Frame", "_OPTIONS_FRAME", f)
+
+optionsFrame:SetPoint("TOPLEFT", f, "TOPLEFT", padding, -padding * 5)
+optionsFrame:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -padding, padding)
+
+-- options text
+local optionsText = util.Text(optionsFrame, "Options", "SystemFont_Med1")
+
+optionsText:SetPoint("TOPLEFT", optionsFrame)
+
 -- options
-local cbEnabled = CreateFrame("CheckButton", L["ns"] .. "_CB_ENABLED", panel, "ChatConfigCheckButtonTemplate")
-cbEnabled:SetPoint("TOPLEFT", padding, -padding)
-cbEnabled:SetSize(32,32)
+local cbEnabled = util.Checkbox(optionsFrame, 0, -padding, "HELLO BROTHER?")
+
+cbEnabled.tooltip = "HYB"
+cbEnabled:SetScript("OnClick", config.IsEnabledCheckBoxOnClick)

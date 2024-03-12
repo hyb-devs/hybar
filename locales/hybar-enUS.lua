@@ -4,7 +4,7 @@ _hyb.locales = {}
 
 local L = _hyb.locales
 
-    L["ns"] = "HYBAR"
+    L["ns"] = "HYBAR_"
     L["hybar"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃卂尺"
     L["hyb1"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃尺ㄖㄒ卄乇尺"
     L["hyb2"] = "卄乇ㄥㄥ　ㄚ乇卂卄　乃尺ㄖㄒ卄乇尺"
