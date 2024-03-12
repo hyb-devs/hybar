@@ -33,3 +33,6 @@ titleText:SetPoint("TOP", panel)
 
 
 -- options
+local cbEnabled = CreateFrame("CheckButton", L["ns"] .. "_CB_ENABLED", panel, "ChatConfigCheckButtonTemplate")
+cbEnabled:SetPoint("TOPLEFT", padding, -padding)
+cbEnabled:SetSize(32,32)

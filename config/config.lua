@@ -1,7 +1,8 @@
 local _, _hyb = ...
-local L, config, util  = _hyb.locales, _hyb.config or {}, _hyb.util
 
 if _hyb.config then return end
+
+local config = {}
 
 config.UpdateConfigValues = function()
     local panel = _hyb.config.config_frame

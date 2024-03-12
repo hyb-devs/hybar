@@ -1,9 +1,6 @@
 local hybName, _hyb = ...
 local L = _hyb.locales
 
-if not _hyb.util then
-    _hyb.util = _hyb.SetupUtil()
-end
 
 _hyb.core = {}
 
