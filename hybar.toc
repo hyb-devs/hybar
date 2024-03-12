@@ -21,6 +21,8 @@ functions/slash.lua
 
 core/hybar_core.lua
 core/hybar_bar.lua
-config/hybar_config.lua
+
+config/config.lua
+config/frame.lua
 
 start.lua
