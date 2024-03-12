@@ -1,22 +1,15 @@
-local _hybName, _hyb = ...
-local L, config, core = _hyb.locales, _hyb.config or {}, _hyb.core
+local _, _hyb = ...
+local L, config, core, util  = _hyb.locales, _hyb.config or {}, _hyb.core, _hyb.util
 
+local padding = 16
+local f = CreateFrame("Frame", L["ns"] .. "_CONFIG_FRAME", UIParent)
 
-function config:InitializeVisuals()
-    ---@type panel
-    local panel = CreateFrame("Frame", _hybName .. "ConfigParentPanel", UIParent)
-    print(type(panel))
-    self.parent_panel = panel
+config.OnFrameDragStart = function()
+    f:StartMoving()
+end
 
-    panel:SetSize(1, 1)
-    panel.config_panel = self.CreateConfigPanel(panel)
-    panel.config_panel:SetPoint('TOPLEFT', 10, -10)
-    panel.config_panel:SetSize(1, 1)
-
-    panel.name = "hybar"
-    panel.default = _hyb.config.OnDefault
-    InterfaceOptions_AddCategory(panel)
-
+config.OnFrameDragStop = function()
+    f:StopMovingOrSizing()
 end
 
 config.UpdateConfigValues = function()
@@ -45,45 +38,32 @@ config.WelcomeCheckBoxOnClick = function(self)
     _hyb.core.UpdateAllVisualsOnSettingsChange()
 end
 
-config.CreateConfigPanel = function(parent_panel)
-    _hyb.config.config_frame = CreateFrame("Frame", _hybName .. "GlobalConfigPanel", parent_panel)
-    local panel = _hyb.config.config_frame
 
-    -- Title Text
-    panel.title_text = _hyb.util.TextFactory(panel, L["Settings"], 20)
-    panel.title_text:SetPoint("TOPLEFT", 0, 0)
-    panel.title_text:SetTextColor(1, 0.9, 0, 1)
-    
-    -- Enabled
-    panel.is_enabled_checkbox = _hyb.util.CheckBoxFactory(
-        "IsEnabledCheckBox",
-        panel,
-        L["Enabled"],
-        L["Uncheck to disable"],
-        _hyb.config.IsEnabledCheckBoxOnClick)
-    panel.is_enabled_checkbox:SetPoint("TOPLEFT", 0, -30)
+-- HYBAR_CONFIG_FRAME
+f:SetPoint("CENTER")
+f:SetSize(500,500)
+f:SetMovable(true)
+f:EnableMouse(true)
+f:RegisterForDrag("LeftButton")
+f:SetScript("OnDragStart", config.OnFrameDragStart)
+f:SetScript("OnDragStop", config.OnFrameDragStop)
+f:SetClampedToScreen(true)
 
-    -- Locked
-    panel.is_locked_checkbox = _hyb.util.CheckBoxFactory(
-        "IsLockedCheckBox",
-        panel,
-        L["Lock Bar"],
-        L["Prevents bar from being dragged"],
-        _hyb.config.IsLockedCheckBoxOnClick)
-    panel.is_locked_checkbox:SetPoint("TOPLEFT", 0, -60)
 
-	-- Welcome
-    panel.welcome_checkbox = _hyb.util.CheckBoxFactory(
-        "WelcomeCheckBox",
-        panel,
-        L["Welcome Message"],
-        L["Uncheck to disable display of the welcome message"],
-        _hyb.config.WelcomeCheckBoxOnClick)
-    panel.welcome_checkbox:SetPoint("TOPLEFT", 0, -90)
+local fbg = f:CreateTexture(nil, "BACKGROUND")
+fbg:SetAllPoints()
+fbg:SetColorTexture(0, 0, 0, 0.5)
 
-    -- Return the final panel
-    _hyb.config.UpdateConfigValues()
-    return panel
-end
 
-_hyb.config = config
+-- HYBAR_CONFIG_PANEL
+local panel = CreateFrame("Frame", L["ns"] .. "_CONFIG_PANEL", f)
+panel:SetPoint("TOPLEFT", f, "TOPLEFT", padding, -padding)
+panel:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -padding, padding)
+
+
+-- title text
+local titleText = util.TextFactory(panel, L["hybar"], 10)
+titleText:SetPoint("TOP", panel)
+
+
+-- options panel

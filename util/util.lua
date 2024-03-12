@@ -14,11 +14,7 @@ _hyb.SetupUtil = function()
     end
 
     util.TextFactory = function(parent, text, size)
-        local text_obj = parent:CreateFontString(nil, "ARTWORK")
-
-        text_obj:SetFont("Fonts/FRIZQT__.ttf", size)
-        text_obj:SetJustifyV("CENTER")
-        text_obj:SetJustifyH("CENTER")
+        local text_obj = parent:CreateFontString(nil, "ARTWORK", "SystemFont_Huge1")
         text_obj:SetText(text)
 
         return text_obj

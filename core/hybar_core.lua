@@ -30,7 +30,6 @@ end
 
 local function InitializeAllVisuals()
     _hyb.bar.InitializeVisuals()
-    _hyb.config:InitializeVisuals()
 end
 
 _hyb.core.UpdateAllVisualsOnSettingsChange = function()
