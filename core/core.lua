@@ -9,9 +9,7 @@ coreFrame:RegisterEvent("ADDON_LOADED")
 
 
 local function OnAddonLoaded()
-    _hyb.conf.user = conf.SetUserConf()
-    print(tostring(conf.user.enabled))
-    -- bar.InitializeVisuals()
+    bar.SetVisibility()
     if conf.user.welcomeMsg then
         for _, line in ipairs(load_message) do
 		    util.PrintMsg(line)

@@ -13,7 +13,7 @@ local defaults = {
 }
 
 
-_hyb.conf.SetUserConf = function()
+local SetUserConf = function()
     local userConf = _hyb.conf.user or {}
     for k, v in pairs(defaults) do
         if userConf[k] == nil then
@@ -41,3 +41,5 @@ end
 function _hyb.conf:WelcomeCheckBoxOnClick()
 	_hyb.conf.user.welcomeMsg = self:GetChecked()
 end
+
+_hyb.conf.user = SetUserConf()
