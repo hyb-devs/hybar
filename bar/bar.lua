@@ -1,5 +1,3 @@
-print("BAR LOADED")
-
 local _, _hyb = ...
 local L, util, conf = _hyb.locales, _hyb.util, _hyb.conf
 local bar = _hyb.bar or {}

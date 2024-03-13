@@ -12,8 +12,6 @@ local function OnEvent(_, _, addOnName)
         conf.SetUser()
         local user = _hybar_user
 
-        _G["HYBAR_BAR_FRAME"]:EnableMouse(not _hybar_user.locked)
-        
         if user.enabled then
             _G["HYBAR_BAR_FRAME"]:Show()
             _G["HYBAR_BAR_FRAME"]:ClearAllPoints()
