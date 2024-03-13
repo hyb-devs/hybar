@@ -29,15 +29,15 @@ _hyb.conf.UpdateConfVal = function(k, v) _hyb.conf.user[k] = v end
 
 
 function _hyb.conf:IsEnabledCheckBoxOnClick()
-    _hyb.conf.enabled = self:GetChecked()
+    _hyb.conf.user.enabled = self:GetChecked()
 end
 
 
 function _hyb.conf:IsLockedCheckBoxOnClick()
-    _hyb.conf.locked = self:GetChecked()
+    _hyb.conf.user.locked = self:GetChecked()
 end
 
 
 function _hyb.conf:WelcomeCheckBoxOnClick()
-	_hyb.conf.welcomeMsg = self:GetChecked()
+	_hyb.conf.user.welcomeMsg = self:GetChecked()
 end

@@ -16,11 +16,11 @@ definitions.lua
 
 util/util.lua
 
-config/config.lua
+conf/conf.lua
 
 core/hybar_core.lua
 core/hybar_bar.lua
 
-config/frame.lua
+conf/frame_conf.lua
 
 functions/slash.lua
