@@ -1,33 +1,39 @@
 local _, _hyb = ...
+local conf = _hyb.conf or {}
 
-if _hyb.config then return end
+if _hyb.conf then return end
 
-local config = {}
+conf.defaults = {
+    enabled = true,
+    locked = false,
+    welcomeMsg = true,
+    point = "CENTER",
+	rel_point = "CENTER",
+	x_offset = 0,
+	y_offset = -200,
+}
 
-config.UpdateConfigValues = function()
-    local panel = _hyb.config.config_frame
-    local settings = _hybar_char
-    local settings_core = _hybar_core
 
-    panel.is_enabled_checkbox:SetChecked(settings_core.is_enabled)
+conf.UpdateConfigValues = function()
+    _G["HYBAR_ENABLED"]:SetChecked(settings_core.is_enabled)
     panel.is_locked_checkbox:SetChecked(settings.is_locked)
 	panel.welcome_checkbox:SetChecked(settings_core.welcome_message)
 end
 
-config.IsEnabledCheckBoxOnClick = function(self)
-    _hybar_core.is_enabled = self:GetChecked()
-    _hyb.core.UpdateAllVisualsOnSettingsChange()
+
+function conf:IsEnabledCheckBoxOnClick()
+    _hyb.conf.enabled = self:GetChecked()
 end
 
-config.IsLockedCheckBoxOnClick = function(self)
-    _hybar_char.is_locked = self:GetChecked()
-    _hyb.bar.frame:EnableMouse(not _hybar_char.is_locked)
-    _hyb.core.UpdateAllVisualsOnSettingsChange()
+
+function conf:IsLockedCheckBoxOnClick()
+    _hyb.conf.locked = self:GetChecked()
 end
 
-config.WelcomeCheckBoxOnClick = function(self)
-	_hybar_core.welcome_message = self:GetChecked()
-    _hyb.core.UpdateAllVisualsOnSettingsChange()
+
+function conf:WelcomeCheckBoxOnClick()
+	_hyb.conf.welcomeMsg = self:GetChecked()
 end
 
-_hyb.config = config
+
+_hyb.conf = conf

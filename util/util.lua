@@ -30,12 +30,10 @@ util.Frame = function(type, name, parent, template)
 end
 
 
-local cbCount = 1
-util.Checkbox = function(parent, x, y, val)
-    local cb = CreateFrame("CheckButton", L["ns"] .. "_CHECKBUTTON_" .. cbCount, parent, "ChatConfigCheckButtonTemplate")
+util.Checkbox = function(parent, id, x, y, val)
+    local cb = CreateFrame("CheckButton", L["ns"] .. "_CHECKBUTTON_" .. id, parent, "ChatConfigCheckButtonTemplate")
     cb:SetPoint("TOPLEFT", x, y)
     getglobal(cb:GetName() .. "Text"):SetText(val)
-    cbCount = cbCount + 1
     return cb
 end
 

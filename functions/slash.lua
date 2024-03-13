@@ -5,7 +5,7 @@ SLASH_HYB_CONFIG3 = "/hyb"
 SlashCmdList["HYB_CONFIG"] = function()
     if _G["HYBAR_CONFIG_FRAME"]:IsVisible() then
         _G["HYBAR_CONFIG_FRAME"]:Hide()
-    else 
+    else
         _G["HYBAR_CONFIG_FRAME"]:Show()
     end
 end

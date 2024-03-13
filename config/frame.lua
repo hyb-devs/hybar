@@ -1,5 +1,5 @@
 local _, _hyb = ...
-local L, config, util  = _hyb.locales, _hyb.config, _hyb.util
+local L, conf, util  = _hyb.locales, _hyb.conf, _hyb.util
 
 local padding = 16
 
@@ -47,7 +47,7 @@ local optionsText = util.Text(optionsFrame, "Options", "SystemFont_Med1")
 optionsText:SetPoint("TOPLEFT", optionsFrame)
 
 -- options
-local cbEnabled = util.Checkbox(optionsFrame, 0, -padding, "HELLO BROTHER?")
+local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, "HELLO BROTHER?")
 
 cbEnabled.tooltip = "HYB"
-cbEnabled:SetScript("OnClick", config.IsEnabledCheckBoxOnClick)
+cbEnabled:SetScript("OnClick", conf.IsEnabledCheckBoxOnClick)

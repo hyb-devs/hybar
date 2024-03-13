@@ -1,54 +1,9 @@
 local _hybName, _hyb = ...
-local L = _hyb.locales
+local L, conf, bar = _hyb.locales, _hyb.conf, _hyb.bar or {}
 
-_hyb.bar = {}
 
---[[===================================== SETTINGS =====================================]]--
-
-_hyb.bar.default_settings = {
-    point = "CENTER",
-	rel_point = "CENTER",
-	x_offset = 0,
-	y_offset = -200,
-	is_locked = false,
-}
-
-_hyb.bar.LoadSettings = function()
-    if not _hybar_char then
-        _hybar_char = {}
-    end
-
-    for setting, value in pairs(_hyb.bar.default_settings) do
-        if _hybar_char[setting] == nil then
-            _hybar_char[setting] = value
-        end
-    end
-end
-
---[[====================================== LOGIC =======================================]]--
-
-_hyb.bar.OnUpdate = function(elapsed)
-    if _hybar_core.is_enabled then
-        -- Update the visuals
-        _hyb.bar.UpdateVisualsOnUpdate()
-    end
-end
-
---[[===================================== UI ===========================================]]--
-
-_hyb.bar.UpdateVisualsOnUpdate = function()
-    local settings = _hybar_char
-    local frame = _hyb.bar.frame
-    if settings.enabled then
-        
-    end
-end
-
-_hyb.bar.UpdateVisualsOnSettingsChange = function()
-    local frame = _hyb.bar.frame
-    local settings = _hybar_char
-    local core_settings = _hybar_core
-    if core_settings.is_enabled then
+bar.UpdateVisualsOnSettingsChange = function()
+    if conf.enabled then
         frame:Show()
         frame:ClearAllPoints()
         frame:SetPoint(settings.point, UIParent, settings.rel_point, settings.x_offset, settings.y_offset)
@@ -57,13 +12,13 @@ _hyb.bar.UpdateVisualsOnSettingsChange = function()
     end
 end
 
-_hyb.bar.OnFrameDragStart = function()
+bar.OnFrameDragStart = function()
     if not _hybar_char.is_locked then
         _hyb.bar.frame:StartMoving()
     end
 end
 
-_hyb.bar.OnFrameDragStop = function()
+bar.OnFrameDragStop = function()
     local frame = _hyb.bar.frame
     local settings = _hybar_char
     frame:StopMovingOrSizing()
@@ -78,9 +33,7 @@ _hyb.bar.OnFrameDragStop = function()
     _hyb.bar.UpdateVisualsOnSettingsChange()
 end
 
-_hyb.bar.InitializeVisuals = function()
-    local settings = _hybar_char
-
+bar.InitializeVisuals = function()
     local BUTTON_SIZE = 32
     local PADDING = 2
     local NUM_BUTTONS = 2
@@ -148,3 +101,5 @@ _hyb.bar.InitializeVisuals = function()
     
     frame:Show()
 end
+
+_hyb.bar = bar
