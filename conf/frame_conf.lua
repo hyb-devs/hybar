@@ -51,3 +51,21 @@ local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, "HELLO BRO
 
 cbEnabled.tooltip = "HYB"
 cbEnabled:SetScript("OnClick", conf.IsEnabledCheckBoxOnClick)
+
+local OnAddOnLoaded = function()
+    print('OnAddonLoadedL')
+end
+
+
+-- local function OnEvent(_, _, addOnName)
+--     if addOnName == "hybar" then OnAddonLoaded() end
+-- end
+
+local OnConfLoad = function()
+    print('confload')
+    util.OnEvent(OnAddOnLoadedL)
+end
+-- util.OnEvent(OnAddonLoaded)
+
+
+f:SetScript("OnEvent", util.OnEvent(OnAddOnLoaded))
