@@ -24,5 +24,3 @@ core/hybar_bar.lua
 config/frame.lua
 
 functions/slash.lua
-
-start.lua
