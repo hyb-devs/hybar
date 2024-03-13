@@ -47,7 +47,7 @@ local optionsText = util.Text(optionsFrame, "Options", "SystemFont_Med1")
 optionsText:SetPoint("TOPLEFT", optionsFrame)
 
 -- options
-local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, "HELLO BROTHER?")
+local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, L["USER_ENABLED"])
 
 cbEnabled.tooltip = "HYB"
 cbEnabled:SetScript("OnClick", conf.IsEnabledCheckBoxOnClick)

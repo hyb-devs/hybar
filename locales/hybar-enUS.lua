@@ -18,7 +18,7 @@ local L = _hyb.locales
     L["tooltip2"] = "/g"
     
     L["Settings"] = "hybar settings"
-    L["Enabled"] = "Enabled"
+    L["USER_ENABLED"] = "ENABLED"
     L["Uncheck to disable"] = "Uncheck to disable"
     L["Bar Height"] = "Bar Height"
     L["X Offset"] = "X Offset"

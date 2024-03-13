@@ -37,7 +37,9 @@ end
 util.Checkbox = function(parent, id, x, y, val)
     local cb = CreateFrame("CheckButton", L["ns"] .. "_CHECKBUTTON_" .. id, parent, "ChatConfigCheckButtonTemplate")
     cb:SetPoint("TOPLEFT", x, y)
-    getglobal(cb:GetName() .. "Text"):SetText(val)
+    local textName = cb:GetName() .. "Text"
+    local textObject = _G[textName]
+    textObject:SetText(val)
     return cb
 end
 
