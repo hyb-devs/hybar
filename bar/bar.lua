@@ -78,7 +78,6 @@ local totalHeight = BUTTON_SIZE + (PADDING * 2)
 f:SetSize(totalWidth, totalHeight)
 
 f:SetMovable(true)
--- f:EnableMouse(not _hybar_user.locked)
 f:RegisterForDrag("LeftButton")
 f:SetScript("OnDragStart", OnFrameDragStart)
 f:SetScript("OnDragStop", OnFrameDragStop)

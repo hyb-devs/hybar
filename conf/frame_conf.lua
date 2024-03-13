@@ -47,7 +47,21 @@ local optionsText = util.Text(optionsFrame, "Options", "SystemFont_Med1")
 optionsText:SetPoint("TOPLEFT", optionsFrame)
 
 -- options
+
+-- enabled
 local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, L["USER_ENABLED"])
 
-cbEnabled.tooltip = "HYB"
-cbEnabled:SetScript("OnClick", conf.IsEnabledCheckBoxOnClick)
+cbEnabled.tooltip = L["USER_ENABLED_TOOLTIP"] 
+cbEnabled:SetScript("OnClick", conf.EnabledCheckBoxOnClick)
+
+-- locked
+local cbLocked = util.Checkbox(optionsFrame, "LOCKED", 0, -padding * 3, L["USER_LOCKED"])
+
+cbLocked.tooltip = L["USER_LOCKED_TOOLTIP"]
+cbLocked:SetScript("OnClick", conf.LockedCheckBoxOnClick)
+
+-- welcomeMsg
+local cbWelcome = util.Checkbox(optionsFrame, "WELCOME_MSG", 0, -padding * 5, L["USER_WELCOME_MSG"])
+
+cbWelcome.tooltip = L["USER_WELCOME_MSG_TOOLTIP"]
+cbWelcome:SetScript("OnClick", conf.WelcomeCheckBoxOnClick)

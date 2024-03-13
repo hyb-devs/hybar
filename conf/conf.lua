@@ -27,16 +27,23 @@ local function SetupConf()
         _hybar_user = user
 
         if _hybar_user.enabled then
-            _G["HYBAR__CHECKBUTTON_ENABLED"]:SetChecked(true)
+            _G["HYBAR_CHECKBUTTON_ENABLED"]:SetChecked(true)
         end
 
+        if _hybar_user.locked then
+            _G["HYBAR_CHECKBUTTON_LOCKED"]:SetChecked(true)
+        end
+
+        if _hybar_user.welcomeMsg then
+            _G["HYBAR_CHECKBUTTON_WELCOME_MSG"]:SetChecked(true)
+        end
     end
 
 
     conf.UpdateConfVal = function(k, v) conf.user[k] = v end
 
 
-    function conf:IsEnabledCheckBoxOnClick()
+    function conf:EnabledCheckBoxOnClick()
         _hybar_user.enabled = self:GetChecked()
         if _hybar_user.enabled then
             _G["HYBAR_BAR_FRAME"]:Show()
@@ -46,7 +53,7 @@ local function SetupConf()
     end
 
 
-    function conf:IsLockedCheckBoxOnClick()
+    function conf:LockedCheckBoxOnClick()
         _hybar_user.locked = self:GetChecked()
     end
 

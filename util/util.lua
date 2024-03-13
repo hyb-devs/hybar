@@ -33,7 +33,7 @@ end
 
 
 util.Checkbox = function(parent, id, x, y, val)
-    local cb = CreateFrame("CheckButton", L["ns"] .. "_CHECKBUTTON_" .. id, parent, "ChatConfigCheckButtonTemplate")
+    local cb = CreateFrame("CheckButton", L["ns"] .. "CHECKBUTTON_" .. id, parent, "ChatConfigCheckButtonTemplate")
     local textName = cb:GetName() .. "Text"
     local textObject = _G[textName]
 
