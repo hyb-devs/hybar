@@ -3,8 +3,7 @@
 ## Notes: A dedicated action bar for hyb communication.
 ## Author: hyb-devs
 ## DefaultState: enabled
-## SavedVariables: _hybar_core
-## SavedVariablesPerCharacter: _hybar_char
+## SavedVariables: _hybar_user
 ## Version: 1.0.0-alpha
 
 ## X-Email: hyb.devs@gmail.com
@@ -17,10 +16,11 @@ definitions.lua
 
 util/util.lua
 
+conf/conf.lua
+conf/frame_conf.lua
+
+bar/bar.lua
+
+core/core.lua
+
 functions/slash.lua
-
-core/hybar_core.lua
-core/hybar_bar.lua
-config/hybar_config.lua
-
-start.lua
