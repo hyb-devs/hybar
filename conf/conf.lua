@@ -25,6 +25,11 @@ local function SetupConf()
             end
         end
         _hybar_user = user
+
+        if _hybar_user.enabled then
+            _G["HYBAR__CHECKBUTTON_ENABLED"]:SetChecked(true)
+        end
+
     end
 
 
