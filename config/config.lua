@@ -1,9 +1,8 @@
 local _, _hyb = ...
-local conf = _hyb.conf or {}
 
-if _hyb.conf then return end
+if not _hyb.conf then _hyb.conf = {} end
 
-conf.defaults = {
+local defaults = {
     enabled = true,
     locked = false,
     welcomeMsg = true,
@@ -14,26 +13,31 @@ conf.defaults = {
 }
 
 
-conf.UpdateConfigValues = function()
-    _G["HYBAR_ENABLED"]:SetChecked(settings_core.is_enabled)
-    panel.is_locked_checkbox:SetChecked(settings.is_locked)
-	panel.welcome_checkbox:SetChecked(settings_core.welcome_message)
+_hyb.conf.SetUserConf = function()
+    local userConf = _hyb.conf.user or {}
+    for k, v in pairs(defaults) do
+        if userConf[k] == nil then
+            userConf[k] = v
+        end
+    end
+
+    return userConf
 end
 
 
-function conf:IsEnabledCheckBoxOnClick()
+_hyb.conf.UpdateConfVal = function(k, v) _hyb.conf.user[k] = v end
+
+
+function _hyb.conf:IsEnabledCheckBoxOnClick()
     _hyb.conf.enabled = self:GetChecked()
 end
 
 
-function conf:IsLockedCheckBoxOnClick()
+function _hyb.conf:IsLockedCheckBoxOnClick()
     _hyb.conf.locked = self:GetChecked()
 end
 
 
-function conf:WelcomeCheckBoxOnClick()
+function _hyb.conf:WelcomeCheckBoxOnClick()
 	_hyb.conf.welcomeMsg = self:GetChecked()
 end
-
-
-_hyb.conf = conf

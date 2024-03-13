@@ -14,12 +14,9 @@ load_message[2] = "  @hyb-devs"
 load_message[3] = "   " .. version .. " | " .. L["config"]
 
 
-local function InitializeAllVisuals()
-    _hyb.bar.InitializeVisuals()
-end
-
 local function OnAddonLoaded()
-    if conf.welcome_message then
+    _hyb.conf.user = _hyb.conf.SetUserConf()
+    if _hyb.conf.user.welcomeMsg then
         for _, line in ipairs(load_message) do
 		    util.PrintMsg(line)
         end
