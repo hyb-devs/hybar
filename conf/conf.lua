@@ -1,6 +1,5 @@
 local _, _hyb = ...
-
-if not _hyb.conf then _hyb.conf = {} end
+local conf = _hyb.conf or {}
 
 local defaults = {
     enabled = true,
@@ -13,8 +12,8 @@ local defaults = {
 }
 
 
-local SetUserConf = function()
-    local userConf = _hyb.conf.user or {}
+conf.SetUserConf = function()
+    local userConf = conf.user or {}
     for k, v in pairs(defaults) do
         if userConf[k] == nil then
             userConf[k] = v
@@ -25,13 +24,13 @@ local SetUserConf = function()
 end
 
 
-_hyb.conf.UpdateConfVal = function(k, v) _hyb.conf.user[k] = v end
+conf.UpdateConfVal = function(k, v) conf.user[k] = v end
 
 
-function _hyb.conf:IsEnabledCheckBoxOnClick()
-    _hyb.conf.user.enabled = self:GetChecked()
+function conf:IsEnabledCheckBoxOnClick()
+    conf.user.enabled = self:GetChecked()
     -- print(_hyb.conf.user.enabled)
-    if _hyb.conf.user.enabled then
+    if conf.user.enabled then
         _G["HYBAR_BAR_FRAME"]:Show()
     else
         _G["HYBAR_BAR_FRAME"]:Hide()
@@ -39,14 +38,15 @@ function _hyb.conf:IsEnabledCheckBoxOnClick()
 end
 
 
-function _hyb.conf:IsLockedCheckBoxOnClick()
-    _hyb.conf.user.locked = self:GetChecked()
+function conf:IsLockedCheckBoxOnClick()
+    conf.user.locked = self:GetChecked()
 end
 
 
-function _hyb.conf:WelcomeCheckBoxOnClick()
-	_hyb.conf.user.welcomeMsg = self:GetChecked()
+function conf:WelcomeCheckBoxOnClick()
+	conf.user.welcomeMsg = self:GetChecked()
 end
 
+conf.user = conf.SetUserConf()
 
-_hyb.conf.user = SetUserConf()
+_hyb.conf = conf

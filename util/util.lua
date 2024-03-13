@@ -5,11 +5,6 @@ if _hyb.util then return end
 
 local util = {}
 
-util.OnEvent = function(callback)
-    local addOnName = _hybName
-    if addOnName == "hybar" then callback() end
-end
-
 util.SystemMsg = function(msg)
     _G["DEFAULT_CHAT_FRAME"]:AddMessage("|cFF00FFB0" .. msg .. "|r")
 end
