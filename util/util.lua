@@ -29,17 +29,18 @@ end
 
 
 util.Frame = function(type, name, parent, template)
-    local f = CreateFrame(type, L["ns"] .. name, parent, template)
-    return f
+    return CreateFrame(type, L["ns"] .. name, parent, template)
 end
 
 
 util.Checkbox = function(parent, id, x, y, val)
     local cb = CreateFrame("CheckButton", L["ns"] .. "_CHECKBUTTON_" .. id, parent, "ChatConfigCheckButtonTemplate")
-    cb:SetPoint("TOPLEFT", x, y)
     local textName = cb:GetName() .. "Text"
     local textObject = _G[textName]
+
     textObject:SetText(val)
+    cb:SetPoint("TOPLEFT", x, y)
+
     return cb
 end
 

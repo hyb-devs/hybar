@@ -23,7 +23,7 @@ fbg:SetColorTexture(0, 0, 0, 0.5)
 
 
 -- HYBAR_CONFIG_PANEL
-local panel = CreateFrame("Frame", L["ns"] .. "_CONFIG_PANEL", f)
+local panel = CreateFrame("Frame", L["ns"] .. "CONFIG_PANEL", f)
 
 panel:SetPoint("TOPLEFT", f, "TOPLEFT", padding, -padding)
 panel:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -padding, padding)
@@ -36,7 +36,7 @@ titleText:SetPoint("TOP", panel)
 
 
 -- options frame
-local optionsFrame = util.Frame("Frame", "_OPTIONS_FRAME", f)
+local optionsFrame = util.Frame("Frame", "OPTIONS_FRAME", f)
 
 optionsFrame:SetPoint("TOPLEFT", f, "TOPLEFT", padding, -padding * 5)
 optionsFrame:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -padding, padding)
