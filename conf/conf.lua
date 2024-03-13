@@ -30,6 +30,9 @@ _hyb.conf.UpdateConfVal = function(k, v) _hyb.conf.user[k] = v end
 
 function _hyb.conf:IsEnabledCheckBoxOnClick()
     _hyb.conf.user.enabled = self:GetChecked()
+    print(_hyb.conf.user.enabled)
+    SetUserConf()
+    _hyb.bar.SetVisibility()
 end
 
 

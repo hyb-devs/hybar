@@ -20,7 +20,6 @@ conf/conf.lua
 conf/frame_conf.lua
 
 bar/bar.lua
-bar/frame_bar.lua
 
 core/core.lua
 
