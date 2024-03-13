@@ -5,6 +5,7 @@ local padding = 16
 
 -- HYBAR_CONFIG_FRAME
 local f = util.Frame("Frame", "CONFIG_FRAME", UIParent)
+f:RegisterEvent("ADDON_LOADED")
 
 f:SetPoint("CENTER")
 f:SetSize(500,500)
@@ -52,20 +53,18 @@ local cbEnabled = util.Checkbox(optionsFrame, "ENABLED", 0, -padding, "HELLO BRO
 cbEnabled.tooltip = "HYB"
 cbEnabled:SetScript("OnClick", conf.IsEnabledCheckBoxOnClick)
 
-local OnAddOnLoaded = function()
-    print('OnAddonLoadedL')
+local function OnAddonLoaded()
+    print('OnAddonLoaded')
+
 end
 
 
--- local function OnEvent(_, _, addOnName)
---     if addOnName == "hybar" then OnAddonLoaded() end
--- end
-
-local OnConfLoad = function()
-    print('confload')
-    util.OnEvent(OnAddOnLoadedL)
+local function OnEvent(_, _, addOnName)
+    if addOnName == "hybar" then OnAddonLoaded() end
 end
+
+
 -- util.OnEvent(OnAddonLoaded)
 
 
-f:SetScript("OnEvent", util.OnEvent(OnAddOnLoaded))
+f:SetScript("OnEvent", OnEvent)
