@@ -1,4 +1,3 @@
-print("START CORE LOAD")
 local _, _hyb = ...
 local L, util, bar, conf = _hyb.locales, _hyb.util, _hyb.bar, _hyb.conf
 
@@ -34,4 +33,3 @@ end
 
 
 coreFrame:SetScript("OnEvent", OnEvent)
-print("END CORE LOAD")

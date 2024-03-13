@@ -1,4 +1,3 @@
-print("START CONF LOAD")
 local _, _hyb = ...
 
 
@@ -73,5 +72,3 @@ end
 if not _hyb.conf then
     _hyb.conf = SetupConf()
 end
-
-print('END CONF LOAD')

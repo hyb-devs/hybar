@@ -78,6 +78,7 @@ local totalHeight = BUTTON_SIZE + (PADDING * 2)
 f:SetSize(totalWidth, totalHeight)
 
 f:SetMovable(true)
+f:EnableMouse(true)
 f:RegisterForDrag("LeftButton")
 f:SetScript("OnDragStart", OnFrameDragStart)
 f:SetScript("OnDragStop", OnFrameDragStop)
