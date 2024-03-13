@@ -3,7 +3,7 @@
 ## Notes: A dedicated action bar for hyb communication.
 ## Author: hyb-devs
 ## DefaultState: enabled
-## SavedVariables: _hybar_conf
+## SavedVariables: _hybar_user
 ## Version: 1.0.0-alpha
 
 ## X-Email: hyb.devs@gmail.com

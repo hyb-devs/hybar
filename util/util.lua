@@ -14,7 +14,6 @@ util.SystemMsgEm = function()
 end
 
 
--- Rounds the given number to the given step.
 util.SimpleRound = function(num, step)
     return floor(num / step) * step
 end

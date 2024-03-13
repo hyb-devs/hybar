@@ -1,8 +1,9 @@
+print("BAR LOADED")
+
 local _, _hyb = ...
 local L, util, conf = _hyb.locales, _hyb.util, _hyb.conf
 local bar = _hyb.bar or {}
-local user = conf.user
-
+local user = _hybar_user
 
 local BUTTON_SIZE = 32
 local PADDING = 2
@@ -49,19 +50,8 @@ for i = 1, 2 do
 end
 
 
-bar.SetVisibility = function()
-    if user.enabled then
-        _G["HYBAR_BAR_FRAME"]:Show()
-        _G["HYBAR_BAR_FRAME"]:ClearAllPoints()
-        _G["HYBAR_BAR_FRAME"]:SetPoint(user.point, UIParent, user.rel_point, user.x_offset, user.y_offset)
-    else
-        _G["HYBAR_BAR_FRAME"]:Hide()
-    end
-end
-
-
 local OnFrameDragStart = function()
-    if not user.locked then
+    if not _hybar_user.locked then
         f:StartMoving()
     end
 end
@@ -69,15 +59,16 @@ end
 
 local OnFrameDragStop = function()
     f:StopMovingOrSizing()
-    point, _, rel_point, x_offset, y_offset = f:GetPoint()
+    local point, _, rel_point, x_offset, y_offset = f:GetPoint()
+
     if x_offset < 20 and x_offset > -20 then
         x_offset = 0
     end
-    user.point = point
-    user.rel_point = rel_point
-    user.x_offset = _hyb.util.SimpleRound(x_offset, 1)
-    user.y_offset = _hyb.util.SimpleRound(y_offset, 1)
-    bar.SetVisibility()
+
+    _hybar_user.point = point
+    _hybar_user.rel_point = rel_point
+    _hybar_user.x_offset = _hyb.util.SimpleRound(x_offset, 1)
+    _hybar_user.y_offset = _hyb.util.SimpleRound(y_offset, 1)
 end
 
 
@@ -88,7 +79,7 @@ local totalHeight = BUTTON_SIZE + (PADDING * 2)
 f:SetSize(totalWidth, totalHeight)
 
 f:SetMovable(true)
-f:EnableMouse(not _hyb.conf.user.locked)
+-- f:EnableMouse(not _hybar_user.locked)
 f:RegisterForDrag("LeftButton")
 f:SetScript("OnDragStart", OnFrameDragStart)
 f:SetScript("OnDragStop", OnFrameDragStop)

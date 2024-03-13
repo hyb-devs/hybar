@@ -1,52 +1,65 @@
+print("START CONF LOAD")
 local _, _hyb = ...
-local conf = _hyb.conf or {}
-
-local defaults = {
-    enabled = true,
-    locked = false,
-    welcomeMsg = true,
-    point = "CENTER",
-	rel_point = "CENTER",
-	x_offset = 0,
-	y_offset = -200,
-}
 
 
-conf.SetUserConf = function()
-    local userConf = conf.user or {}
-    for k, v in pairs(defaults) do
-        if userConf[k] == nil then
-            userConf[k] = v
+local function SetupConf()
+
+    local conf = {}
+
+    local defaults = {
+        enabled = true,
+        locked = false,
+        welcomeMsg = true,
+        point = "CENTER",
+        rel_point = "CENTER",
+        x_offset = 0,
+        y_offset = -200,
+    }
+
+    function conf.SetUser()
+        _hybar_user = _hybar_user or {}
+        local user = _hybar_user
+        for k, v in pairs(defaults) do
+            if user[k] == nil then
+                user[k] = v
+            end
+        end
+        _hybar_user = user
+    end
+
+
+    conf.UpdateConfVal = function(k, v) conf.user[k] = v end
+
+
+    function conf:IsEnabledCheckBoxOnClick()
+        _hybar_user.enabled = self:GetChecked()
+        if _hybar_user.enabled then
+            _G["HYBAR_BAR_FRAME"]:Show()
+        else
+            _G["HYBAR_BAR_FRAME"]:Hide()
         end
     end
 
-    return userConf
-end
 
-
-conf.UpdateConfVal = function(k, v) conf.user[k] = v end
-
-
-function conf:IsEnabledCheckBoxOnClick()
-    conf.user.enabled = self:GetChecked()
-    -- print(_hyb.conf.user.enabled)
-    if conf.user.enabled then
-        _G["HYBAR_BAR_FRAME"]:Show()
-    else
-        _G["HYBAR_BAR_FRAME"]:Hide()
+    function conf:IsLockedCheckBoxOnClick()
+        _hybar_user.locked = self:GetChecked()
     end
+
+
+    function conf:WelcomeCheckBoxOnClick()
+        _hybar_user.welcomeMsg = self:GetChecked()
+    end
+
+
+    function conf:SetConf()
+        _hyb.conf = conf
+    end
+
+    return conf
 end
 
-
-function conf:IsLockedCheckBoxOnClick()
-    conf.user.locked = self:GetChecked()
+if not _hyb.conf then
+    _hyb.conf = SetupConf()
 end
 
-
-function conf:WelcomeCheckBoxOnClick()
-	conf.user.welcomeMsg = self:GetChecked()
-end
-
-conf.user = conf.SetUserConf()
-
-_hyb.conf = conf
+print('END CONF LOAD')
