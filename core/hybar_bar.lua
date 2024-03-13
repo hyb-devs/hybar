@@ -3,7 +3,7 @@ local L, conf, bar = _hyb.locales, _hyb.conf, _hyb.bar or {}
 
 
 bar.UpdateVisualsOnSettingsChange = function()
-    if conf.enabled then
+    if conf.user.enabled then
         frame:Show()
         frame:ClearAllPoints()
         frame:SetPoint(settings.point, UIParent, settings.rel_point, settings.x_offset, settings.y_offset)
