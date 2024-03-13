@@ -4,7 +4,7 @@
 ## Author: hyb-devs
 ## DefaultState: enabled
 ## SavedVariables: _hybar_user
-## Version: 1.0.0-alpha
+## Version: 1.0.2-alpha
 
 ## X-Email: hyb.devs@gmail.com
 ## X-Curse-Project-ID: 980904
