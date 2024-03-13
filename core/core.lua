@@ -9,6 +9,7 @@ coreFrame:RegisterEvent("ADDON_LOADED")
 
 
 local function OnAddonLoaded()
+    conf.LoadUserConf()
     bar.SetVisibility()
     if conf.user.welcomeMsg then
         for _, line in ipairs(load_message) do

@@ -30,9 +30,12 @@ _hyb.conf.UpdateConfVal = function(k, v) _hyb.conf.user[k] = v end
 
 function _hyb.conf:IsEnabledCheckBoxOnClick()
     _hyb.conf.user.enabled = self:GetChecked()
-    print(_hyb.conf.user.enabled)
-    SetUserConf()
-    _hyb.bar.SetVisibility()
+    -- print(_hyb.conf.user.enabled)
+    if _hyb.conf.user.enabled then
+        _G["HYBAR_BAR_FRAME"]:Show()
+    else
+        _G["HYBAR_BAR_FRAME"]:Hide()
+    end
 end
 
 
@@ -44,5 +47,6 @@ end
 function _hyb.conf:WelcomeCheckBoxOnClick()
 	_hyb.conf.user.welcomeMsg = self:GetChecked()
 end
+
 
 _hyb.conf.user = SetUserConf()
