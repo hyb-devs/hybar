@@ -6,11 +6,11 @@ if _hyb.util then return end
 local util = {}
 
 util.SystemMsg = function(msg)
-    _G["DEFAULT_CHAT_FRAME"]:AddMessage("|cFF00FFB0" .. msg .. "|r")
+    _G["DEFAULT_CHAT_FRAME"]:AddMessage("|cFF00FFFF" .. msg .. "|r")
 end
 
 util.SystemMsgEm = function()
-    _G["DEFAULT_CHAT_FRAME"]:AddMessage("|cFF00FFB0" .. L["hybar"])
+    _G["DEFAULT_CHAT_FRAME"]:AddMessage("|cFF00FFFF" .. L["hybar"])
 end
 
 

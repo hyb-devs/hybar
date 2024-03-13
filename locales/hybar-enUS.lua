@@ -30,3 +30,6 @@ local L = _hyb.locales
 
     L["WELCOME_LINE_2"] = " " .. "|cFFFFFFFF/hyb|r to configure"
     L["WELCOME_LINE_3"] = " " .. L["VERSION"] .. " | " .. "https://github.com/hyb-devs/hybar"
+
+    L["GITHUB_URL"] = "https://github.com/hyb-devs/hybar"
+    L["CONF_FRAME_FOOTER"] = L["VERSION"] .. " | " .. L["GITHUB_URL"]
