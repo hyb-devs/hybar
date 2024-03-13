@@ -1,5 +1,5 @@
 local _, _hyb = ...
-local L, util, conf = _hyb.locales, _hyb.util, _hyb.conf
+local L, util, conf, bar = _hyb.locales, _hyb.util, _hyb.conf, _hyb.bar
 
 
 local load_message = { L["WELCOME_LINE_1"], L["WELCOME_LINE_2"], L["WELCOME_LINE_3"]}
@@ -9,7 +9,9 @@ coreFrame:RegisterEvent("ADDON_LOADED")
 
 
 local function OnAddonLoaded()
-    conf.user = conf.SetUserConf()
+    _hyb.conf.user = conf.SetUserConf()
+    print(tostring(conf.user.enabled))
+    -- bar.InitializeVisuals()
     if conf.user.welcomeMsg then
         for _, line in ipairs(load_message) do
 		    util.PrintMsg(line)
